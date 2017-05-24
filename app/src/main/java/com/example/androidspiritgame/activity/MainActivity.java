@@ -26,6 +26,7 @@ import com.example.androidspiritgame.R;
 import com.example.androidspiritgame.adapter.MyRecyclerAdapter;
 import com.example.androidspiritgame.adapter.MyVPAdapter;
 import com.example.androidspiritgame.bean.Hero;
+import com.example.androidspiritgame.bean.InitHeroList;
 import com.example.androidspiritgame.fragment.HomePageFragment;
 import com.example.androidspiritgame.fragment.ShopFragment;
 
@@ -146,7 +147,7 @@ public class MainActivity extends BaseFragmentActivity {
 
     private MyRecyclerAdapter myRecyclerAdapter;
 
-    private List<Hero> heroList = new ArrayList<>();
+    private List<Hero> heroList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,9 +179,7 @@ public class MainActivity extends BaseFragmentActivity {
 
         gridLayoutManager = new GridLayoutManager(this, 5, LinearLayoutManager.VERTICAL, false);
 
-        for (int i = 0; i < 25; i++) {
-            heroList.add(new Hero());
-        }
+        heroList = InitHeroList.getHeroList(25);
 
         myRecyclerAdapter = new MyRecyclerAdapter(heroList);
 

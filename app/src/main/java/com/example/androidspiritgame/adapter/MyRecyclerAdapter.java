@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.androidspiritgame.R;
 import com.example.androidspiritgame.bean.Hero;
+
 
 import java.util.List;
 
@@ -25,12 +27,21 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_view_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        Hero bean = list.get(position);
+        holder.background.setImageResource(bean.getBackgroundRes());
+        holder.heroHead.setImageResource(bean.getHeadRes());
+        holder.rank.setImageResource(bean.getRankRes());
+        holder.nature.setImageResource(bean.getNatureRes());
+        holder.lv_tv.setText("Lv." + bean.getLv());
+        for (int i = 4; i > bean.getStars(); i--) {
+            holder.stars[i].setVisibility(View.INVISIBLE);
+        }
 
     }
 
@@ -46,6 +57,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         protected ImageView stars[] = new ImageView[5];
         protected ImageView rank;
         protected ImageView heroHead;
+        protected TextView lv_tv;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -58,9 +70,8 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
             this.stars[4] = (ImageView) itemView.findViewById(R.id.star5_img);
             this.rank = (ImageView) itemView.findViewById(R.id.rank_img);
             this.heroHead = (ImageView) itemView.findViewById(R.id.hero_img);
-
+            this.lv_tv = (TextView) itemView.findViewById(R.id.lv_tv);
         }
-
 
     }
 
