@@ -13,7 +13,7 @@ import com.example.androidspiritgame.application.ContextHolder;
 /**
  * 整合了一部分常用到的Activity的用法
  * <p>
- * Created by 区枫华 on 2017/5/16.
+ * Created by 区枫华 on 2017/a5/16.
  */
 
 public abstract class BaseActivity extends Activity implements View.OnClickListener {

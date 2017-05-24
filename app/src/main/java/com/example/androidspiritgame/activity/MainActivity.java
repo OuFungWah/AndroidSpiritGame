@@ -6,6 +6,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +23,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.example.androidspiritgame.R;
+import com.example.androidspiritgame.adapter.MyRecyclerAdapter;
 import com.example.androidspiritgame.adapter.MyVPAdapter;
+import com.example.androidspiritgame.bean.Hero;
 import com.example.androidspiritgame.fragment.HomePageFragment;
 import com.example.androidspiritgame.fragment.ShopFragment;
 
@@ -136,6 +141,12 @@ public class MainActivity extends BaseFragmentActivity {
     private RelativeLayout sell_dialog_rl;
     private RelativeLayout upgrade_dialog_rl;
     private RelativeLayout evolve_dialog_rl;
+    private RecyclerView recyclerView;
+    private GridLayoutManager gridLayoutManager;
+
+    private MyRecyclerAdapter myRecyclerAdapter;
+
+    private List<Hero> heroList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,6 +175,15 @@ public class MainActivity extends BaseFragmentActivity {
         DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
         dialogHeight = displayMetrics.heightPixels;
         dialogWidth = displayMetrics.widthPixels;
+
+        gridLayoutManager = new GridLayoutManager(this, 5, LinearLayoutManager.VERTICAL, false);
+
+        for (int i = 0; i < 25; i++) {
+            heroList.add(new Hero());
+        }
+
+        myRecyclerAdapter = new MyRecyclerAdapter(heroList);
+
     }
 
     @Override
@@ -201,6 +221,7 @@ public class MainActivity extends BaseFragmentActivity {
         sell_dialog_rl = findView(dialogView, R.id.sell_dialog_rl);
         upgrade_dialog_rl = findView(dialogView, R.id.upgrade_dialog_rl);
         evolve_dialog_rl = findView(dialogView, R.id.evolve_dialog_rl);
+        recyclerView = findView(dialogView, R.id.recycle_list);
 
     }
 
@@ -224,6 +245,9 @@ public class MainActivity extends BaseFragmentActivity {
         leftProgess.setProgress(progress);
         rightProgess.setProgress(progress);
         thread.start();
+
+        recyclerView.setAdapter(myRecyclerAdapter);
+        recyclerView.setLayoutManager(gridLayoutManager);
     }
 
     @Override

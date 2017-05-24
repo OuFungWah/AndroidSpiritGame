@@ -10,7 +10,7 @@ import android.widget.Toast;
 import com.example.androidspiritgame.application.ContextHolder;
 
 /**
- * Created by 区枫华 on 2017/5/23.
+ * Created by 区枫华 on 2017/a5/23.
  */
 
 public abstract class BaseFragmentActivity extends FragmentActivity implements View.OnClickListener {

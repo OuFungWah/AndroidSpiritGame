@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="76dp"
+    android:layout_height="80dp">
+
+    <ImageView
+        android:id="@+id/background_img"
+        android:layout_width="58dp"
+        android:layout_height="74dp"
+        android:layout_centerInParent="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/rare3" />
+
+    <ImageView
+        android:id="@+id/hero_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_mermaidqueen" />
+
+    <ImageView
+        android:id="@+id/nature_img"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="3dp"
+        android:src="@drawable/att_earth" />
+
+    <ImageView
+        android:id="@+id/rank_img"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="6dp"
+        android:src="@drawable/a_highlight" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_alignBottom="@id/rank_img"
+        android:layout_marginBottom="4dp"
+        android:layout_toRightOf="@id/rank_img"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/star1_img"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:src="@drawable/star_small" />
+
+        <ImageView
+            android:id="@+id/star2_img"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="-4dp"
+            android:src="@drawable/star_small" />
+
+        <ImageView
+            android:id="@+id/star3_img"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="-4dp"
+            android:src="@drawable/star_small" />
+
+        <ImageView
+            android:id="@+id/star4_img"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="-4dp"
+            android:src="@drawable/star_small" />
+
+        <ImageView
+            android:id="@+id/star5_img"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="-4dp"
+            android:src="@drawable/star_small" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:shadowColor="@color/colorTextShadow"
+        android:shadowDx="4.0"
+        android:shadowDy="2.0"
+        android:shadowRadius="1"
+        android:text="LV.16"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="12sp" />
+
+
+</RelativeLayout>

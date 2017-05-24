@@ -6,4 +6,5 @@
     <color name="colorTextWhite">#fefefe</color>
     <color name="colorTextRiceYellow">#edf074</color>
     <color name="colorTextSkyBlue">#71d7e2</color>
+    <color name="colorTextShadow">#000000</color>
 </resources>

@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.example.androidspiritgame.R;
 
 /**
- * Created by 区枫华 on 2017/5/23.
+ * Created by 区枫华 on 2017/a5/23.
  */
 
 public class HomePageFragment extends Fragment {

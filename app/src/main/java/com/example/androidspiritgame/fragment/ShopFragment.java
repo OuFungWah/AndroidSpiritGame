@@ -18,7 +18,7 @@ import android.widget.RelativeLayout;
 import com.example.androidspiritgame.R;
 
 /**
- * Created by 区枫华 on 2017/5/23.
+ * Created by 区枫华 on 2017/a5/23.
  */
 
 public class ShopFragment extends Fragment implements View.OnClickListener {
