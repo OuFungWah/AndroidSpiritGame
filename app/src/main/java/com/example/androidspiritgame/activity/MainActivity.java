@@ -1,12 +1,16 @@
 package com.example.androidspiritgame.activity;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -119,6 +123,20 @@ public class MainActivity extends BaseFragmentActivity {
     private ViewPager viewPager;
     private MyVPAdapter adapter;
 
+    //对话框
+    private Dialog dialog;
+    private View dialogView;
+    int dialogHeight;
+    int dialogWidth;
+
+    //对话框控件
+    private ImageView dialog_close_btn;
+    private RelativeLayout marge_all_dialog_rl;
+    private RelativeLayout attack_dialog_rl;
+    private RelativeLayout sell_dialog_rl;
+    private RelativeLayout upgrade_dialog_rl;
+    private RelativeLayout evolve_dialog_rl;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,6 +158,12 @@ public class MainActivity extends BaseFragmentActivity {
         popMenuAnim.setDuration(SUPER_MENU_ANIMATION_TIME);
         //新建适配器
         adapter = new MyVPAdapter(getSupportFragmentManager(), list);
+
+        //初始化对话框及其宽高参数
+        dialog = new Dialog(this, R.style.MyDialog);
+        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        dialogHeight = displayMetrics.heightPixels;
+        dialogWidth = displayMetrics.widthPixels;
     }
 
     @Override
@@ -168,10 +192,31 @@ public class MainActivity extends BaseFragmentActivity {
         marge_super_btn_rl = findView(R.id.marge_super_btn_rl);
 
         viewPager = findView(R.id.main_viewpager);
+
+        dialogView = LayoutInflater.from(this).inflate(R.layout.bag_dialog, null);
+
+        dialog_close_btn = findView(dialogView, R.id.dialog_close_btn);
+        marge_all_dialog_rl = findView(dialogView, R.id.marge_all_dialog_rl);
+        attack_dialog_rl = findView(dialogView, R.id.attack_dialog_rl);
+        sell_dialog_rl = findView(dialogView, R.id.sell_dialog_rl);
+        upgrade_dialog_rl = findView(dialogView, R.id.upgrade_dialog_rl);
+        evolve_dialog_rl = findView(dialogView, R.id.evolve_dialog_rl);
+
     }
 
     @Override
     protected void setView() {
+
+        dialog.setContentView(dialogView, new ViewGroup.LayoutParams(dialogWidth, dialogHeight));
+
+        dialog_close_btn.setOnClickListener(this);
+        marge_all_dialog_rl.setOnClickListener(this);
+        attack_dialog_rl.setOnClickListener(this);
+        sell_dialog_rl.setOnClickListener(this);
+        upgrade_dialog_rl.setOnClickListener(this);
+        evolve_dialog_rl.setOnClickListener(this);
+
+
         home_bg_ll.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         viewPager.setAdapter(adapter);
         leftProgess.setMax(100);
@@ -212,6 +257,7 @@ public class MainActivity extends BaseFragmentActivity {
                 viewPager.setCurrentItem(1);
                 break;
             case R.id.backpage_super_btn_rl:
+                dialog.show();
                 break;
             case R.id.retract_btn_rl:
                 super_menu_rl.startAnimation(retractAnim);
@@ -220,6 +266,11 @@ public class MainActivity extends BaseFragmentActivity {
             case R.id.pop_menu_btn_rl:
                 pop_menu_btn_rl.setVisibility(View.GONE);
                 super_menu_rl.clearAnimation();
+                break;
+            case R.id.dialog_close_btn:
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                }
                 break;
         }
     }

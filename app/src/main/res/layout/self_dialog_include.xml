@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp">
+        android:layout_height="400dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -43,6 +47,7 @@
                         android:orientation="horizontal">
 
                         <RelativeLayout
+                            android:id="@+id/change_money_dialog_rl"
                             android:layout_width="90dp"
                             android:layout_height="40dp">
 
@@ -63,6 +68,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:id="@+id/change_exchange_dialog_rl"
                             android:layout_width="90dp"
                             android:layout_height="40dp"
                             android:layout_marginLeft="5dp">
@@ -102,18 +108,25 @@
                             android:src="@drawable/title_vip" />
 
                         <RelativeLayout
+                            android:id="@+id/be_vip_btn_dialog_rl"
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="2dp"
                             android:layout_marginLeft="20dp"
-                            android:layout_marginTop="2dp"
-                            android:background="@drawable/btn_purple2">
+                            android:layout_marginTop="2dp">
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:src="@drawable/text_be_vip" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/btn_purple2">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="5dp"
+                                    android:src="@drawable/text_be_vip" />
+
+                            </RelativeLayout>
 
                         </RelativeLayout>
 
@@ -175,6 +188,7 @@
                                         android:layout_centerInParent="true"
                                         android:layout_marginBottom="2dp"
                                         android:text="优惠60%"
+                                        android:textColor="@color/colorTextWhite"
                                         android:textSize="12sp" />
 
                                 </RelativeLayout>
@@ -212,18 +226,26 @@
                                     android:textSize="12sp" />
 
                                 <RelativeLayout
+                                    android:id="@+id/money_btn1_dialog_rl"
                                     android:layout_width="80dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="right"
-                                    android:background="@drawable/btn_red">
+                                    android:layout_gravity="right">
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
+                                    <RelativeLayout
+                                        android:layout_width="80dp"
                                         android:layout_height="wrap_content"
-                                        android:layout_centerInParent="true"
-                                        android:text="$68"
-                                        android:textColor="#fffaa8"
-                                        android:textSize="14sp" />
+                                        android:background="@drawable/btn_red">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerInParent="true"
+                                            android:text="$68"
+                                            android:textColor="#fffaa8"
+                                            android:textSize="14sp" />
+
+                                    </RelativeLayout>
+
 
                                 </RelativeLayout>
                             </LinearLayout>
@@ -265,6 +287,7 @@
                                         android:layout_centerInParent="true"
                                         android:layout_marginBottom="2dp"
                                         android:text="优惠60%"
+                                        android:textColor="@color/colorTextWhite"
                                         android:textSize="12sp" />
 
                                 </RelativeLayout>
@@ -302,18 +325,26 @@
                                     android:textSize="12sp" />
 
                                 <RelativeLayout
+                                    android:id="@+id/money_btn2_dialog_rl"
                                     android:layout_width="80dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="right"
-                                    android:background="@drawable/btn_red">
+                                    android:layout_gravity="right">
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
+                                    <RelativeLayout
+                                        android:layout_width="80dp"
                                         android:layout_height="wrap_content"
-                                        android:layout_centerInParent="true"
-                                        android:text="$68"
-                                        android:textColor="#fffaa8"
-                                        android:textSize="14sp" />
+                                        android:background="@drawable/btn_red">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerInParent="true"
+                                            android:text="$68"
+                                            android:textColor="#fffaa8"
+                                            android:textSize="14sp" />
+
+                                    </RelativeLayout>
+
 
                                 </RelativeLayout>
                             </LinearLayout>
@@ -355,6 +386,7 @@
                                         android:layout_centerInParent="true"
                                         android:layout_marginBottom="2dp"
                                         android:text="优惠60%"
+                                        android:textColor="@color/colorTextWhite"
                                         android:textSize="12sp" />
 
                                 </RelativeLayout>
@@ -392,18 +424,26 @@
                                     android:textSize="12sp" />
 
                                 <RelativeLayout
+                                    android:id="@+id/money_btn3_dialog_rl"
                                     android:layout_width="80dp"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="right"
-                                    android:background="@drawable/btn_red">
+                                    android:layout_gravity="right">
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
+                                    <RelativeLayout
+                                        android:layout_width="80dp"
                                         android:layout_height="wrap_content"
-                                        android:layout_centerInParent="true"
-                                        android:text="$68"
-                                        android:textColor="#fffaa8"
-                                        android:textSize="14sp" />
+                                        android:background="@drawable/btn_red">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerInParent="true"
+                                            android:text="$68"
+                                            android:textColor="#fffaa8"
+                                            android:textSize="14sp" />
+
+                                    </RelativeLayout>
+
 
                                 </RelativeLayout>
                             </LinearLayout>
@@ -428,14 +468,17 @@
                     android:layout_marginBottom="12dp"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
+                    android:layout_marginTop="6dp"
                     android:src="@drawable/text_title_chongzhi" />
 
             </RelativeLayout>
 
             <ImageView
+                android:id="@+id/dialog_close_btn"
                 android:layout_width="52dp"
                 android:layout_height="52dp"
                 android:layout_alignParentRight="true"
+                android:layout_margin="4dp"
                 android:src="@drawable/btn_close" />
 
         </RelativeLayout>

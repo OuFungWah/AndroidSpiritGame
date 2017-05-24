@@ -121,6 +121,16 @@ public abstract class BaseActivity extends Activity implements View.OnClickListe
     }
 
     /**
+     * 实例化 View
+     *
+     * @param id
+     */
+    protected <T extends View> T findView(View parent,int id) {
+        View view = parent.findViewById(id);
+        return (T) view;
+    }
+
+    /**
      * 结束当前Activity转跳
      *
      * @param T
