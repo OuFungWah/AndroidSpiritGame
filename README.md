@@ -1,15 +1,25 @@
 # AndroidSpiritGame(2017.5.25)
-##### 这个是 Android UI 课程的大作业程序，是一个只有游戏界面和基本交互效果的大作业
+##### 这个是 Android UI 课程的大作业程序，是一个只有游戏界面和基本交互效果的app示例
 
 ## Author:OuFungWah
 
+## 要求
+1. ##### 每个按钮都必须要有交互效果，按下后有缩小动画，等放开后再恢复
+1. ##### 二级菜单栏有收起弹出的动画
+1. ##### 进度条需要再后台开启线程使它滚动
+1. ##### 换页使用ViewPager实现
+1. ##### 点击商店按钮换页到商店页面，点击首页按钮回到首页页面
+1. ##### 点击背包按钮展开背包，背包中的英雄列表是可上下滚动的列表
+1. ##### 点击商城的充值按钮弹出充值对话框
+
+
 ## 注意：
-##### 本项目中，一些基本的Activity操作为了方便使用我们封装到了BaseFragmentActivity 中了，如: findViewById(id) 这样的操作我们进行了从新封装变成 findView(id)
+##### 本项目中，一些基本的Activity操作，为了方便使用我们封装到了BaseFragmentActivity 中了，如: findViewById(id) 这样的操作我们进行了重新封装变成 findView(id)
 ##### 本项目中，一些动画操作的Java代码我们也封装起来了
 ##### 本项目仅用于学习交流作用，若发现有错，可联系本人
 
 ## Part1:Login
-##### 登录部分，这是我们已进入 app 时能看见的第一个页面
+##### 登录部分，这是我们进入 app 时能看见的第一个页面
 ##### 相关布局文件: 
 * ##### app/src/main/res/layout/login_activity.xml
 ##### 相关Java文件: 
@@ -18,9 +28,9 @@
 ![](app/src/main/res/drawable/login_finished.png)
 
 ##### 实现提示：
-* **使用LinearLayout可以以比例的形式很好地控制好控件地高度 关键字(LinearLayout，比例)**
-* **输入框的背景实现可以通过自定义Drawable文件来的方式完成 关键字(shape)**
-* **图片的点击效果我们可以通过 自定义Drawable文件的方式完成 关键字(selector)**
+* **使用 LinearLayout 可以以比例的形式很好地控制好控件地高度 关键字( LinearLayout ，比例)**
+* **输入框的背景实现可以通过自定义 Drawable 文件来的方式完成 关键字( drawable ,shape )**
+* **图片的点击效果我们可以通过 自定义 Drawable 文件的方式完成 关键字(  drawable ,selector )**
 
 ## Part2:HomePage
 ##### 游戏的主页面，通过 login 页面的 login 按钮进入
@@ -96,4 +106,4 @@
 ![](app/src/main/res/drawable/charge_finished.png)
 
 ##### 实现提示
-* **同样时自定义对话框 关键字(Dialog)**
+* **同样是自定义对话框 关键字(Dialog)**
