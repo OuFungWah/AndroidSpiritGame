@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -16,12 +17,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.example.androidspiritgame.R;
+import com.example.androidspiritgame.util.Tools;
 
 /**
  * Created by 区枫华 on 2017/a5/23.
  */
 
-public class ShopFragment extends Fragment implements View.OnClickListener {
+public class ShopFragment extends Fragment implements View.OnClickListener, View.OnTouchListener {
 
     //商店按钮布局
     private RelativeLayout charge_money_shop_rl;
@@ -52,11 +54,11 @@ public class ShopFragment extends Fragment implements View.OnClickListener {
         charge_energy_shop_rl = (RelativeLayout) view.findViewById(R.id.charge_energy_shop_rl);
         change_spirit_shop_rl = (RelativeLayout) view.findViewById(R.id.change_spirit_shop_rl);
 
-        charge_money_shop_rl.setOnClickListener(this);
-        buy_shop_rl.setOnClickListener(this);
-        expand_backpack_shop_rl.setOnClickListener(this);
-        charge_energy_shop_rl.setOnClickListener(this);
-        change_spirit_shop_rl.setOnClickListener(this);
+        charge_money_shop_rl.setOnTouchListener(this);
+        buy_shop_rl.setOnTouchListener(this);
+        expand_backpack_shop_rl.setOnTouchListener(this);
+        charge_energy_shop_rl.setOnTouchListener(this);
+        change_spirit_shop_rl.setOnTouchListener(this);
 
         return view;
     }
@@ -81,13 +83,13 @@ public class ShopFragment extends Fragment implements View.OnClickListener {
         money_btn3_dialog_rl = (RelativeLayout) view.findViewById(R.id.money_btn3_dialog_rl);
 
         //设置对话框按钮监听
-        dialog_close_btn.setOnClickListener(this);
-        change_money_dialog_rl.setOnClickListener(this);
-        change_exchange_dialog_rl.setOnClickListener(this);
-        be_vip_btn_dialog_rl.setOnClickListener(this);
-        money_btn1_dialog_rl.setOnClickListener(this);
-        money_btn2_dialog_rl.setOnClickListener(this);
-        money_btn3_dialog_rl.setOnClickListener(this);
+        dialog_close_btn.setOnTouchListener(this);
+        change_money_dialog_rl.setOnTouchListener(this);
+        change_exchange_dialog_rl.setOnTouchListener(this);
+        be_vip_btn_dialog_rl.setOnTouchListener(this);
+        money_btn1_dialog_rl.setOnTouchListener(this);
+        money_btn2_dialog_rl.setOnTouchListener(this);
+        money_btn3_dialog_rl.setOnTouchListener(this);
 
         DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
         int height = displayMetrics.heightPixels;
@@ -108,7 +110,6 @@ public class ShopFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        v.startAnimation(btnAnim);
         switch (v.getId()) {
             case R.id.charge_money_shop_rl:
                 dialog.show();
@@ -119,6 +120,30 @@ public class ShopFragment extends Fragment implements View.OnClickListener {
                 }
                 break;
         }
+    }
+
+    /**
+     * 触摸事件
+     *
+     * @param v
+     * @param event
+     * @return
+     */
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                //按下
+                Tools.btnPress(v);
+                break;
+            case MotionEvent.ACTION_UP:
+                //松开
+                Tools.btnRelease();
+                onClick(v);
+                break;
+        }
+        return true;
     }
 }
 

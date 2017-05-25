@@ -1,6 +1,7 @@
 package com.example.androidspiritgame.activity;
 
 import android.app.Dialog;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -29,11 +31,12 @@ import com.example.androidspiritgame.bean.Hero;
 import com.example.androidspiritgame.bean.InitHeroList;
 import com.example.androidspiritgame.fragment.HomePageFragment;
 import com.example.androidspiritgame.fragment.ShopFragment;
+import com.example.androidspiritgame.util.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseFragmentActivity {
+public class MainActivity extends BaseFragmentActivity implements View.OnTouchListener {
 
     //标识值
     private final int RETRACT_ANIMATION_COMPLETE = 0;
@@ -71,6 +74,7 @@ public class MainActivity extends BaseFragmentActivity {
     private RelativeLayout pop_menu_btn_rl;
     //按键缩放动画
     private Animation narrowAnim;
+    private Animation enlargeAnim;
     //菜单栏伸缩动画
     private Animation retractAnim;
     private Animation popMenuAnim;
@@ -163,6 +167,11 @@ public class MainActivity extends BaseFragmentActivity {
         list.add(new ShopFragment());
         //初始化动画
         narrowAnim = AnimationUtils.loadAnimation(this, R.anim.btn_anim_narrow);
+        enlargeAnim = AnimationUtils.loadAnimation(this, R.anim.btn_anim_enlarge);
+
+        narrowAnim.setFillAfter(true);
+        enlargeAnim.setFillAfter(true);
+
         retractAnim = AnimationUtils.loadAnimation(this, R.anim.super_menu_anim);
         popMenuAnim = AnimationUtils.loadAnimation(this, R.anim.super_menu_pop_anim);
         //设置过度动画时间
@@ -229,14 +238,6 @@ public class MainActivity extends BaseFragmentActivity {
 
         dialog.setContentView(dialogView, new ViewGroup.LayoutParams(dialogWidth, dialogHeight));
 
-        dialog_close_btn.setOnClickListener(this);
-        marge_all_dialog_rl.setOnClickListener(this);
-        attack_dialog_rl.setOnClickListener(this);
-        sell_dialog_rl.setOnClickListener(this);
-        upgrade_dialog_rl.setOnClickListener(this);
-        evolve_dialog_rl.setOnClickListener(this);
-
-
         home_bg_ll.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         viewPager.setAdapter(adapter);
         leftProgess.setMax(100);
@@ -251,27 +252,33 @@ public class MainActivity extends BaseFragmentActivity {
 
     @Override
     protected void initListener() {
-        home_bottom_btn_img.setOnClickListener(this);
-        level_bottom_btn_img.setOnClickListener(this);
-        rob_bottom_btn_img.setOnClickListener(this);
-        shop_bottom_btn_img.setOnClickListener(this);
-        friends_bottom_btn_img.setOnClickListener(this);
-        setting_bottom_btn_img.setOnClickListener(this);
-        left_top_today_mission_img.setOnClickListener(this);
 
-        pop_menu_btn_rl.setOnClickListener(this);
-        retract_btn_rl.setOnClickListener(this);
-        backpage_super_btn_rl.setOnClickListener(this);
-        honor_super_btn_rl.setOnClickListener(this);
-        message_super_btn_rl.setOnClickListener(this);
-        mission_super_btn_rl.setOnClickListener(this);
-        battle_super_btn_rl.setOnClickListener(this);
-        marge_super_btn_rl.setOnClickListener(this);
+        dialog_close_btn.setOnTouchListener(this);
+        marge_all_dialog_rl.setOnTouchListener(this);
+        attack_dialog_rl.setOnTouchListener(this);
+        sell_dialog_rl.setOnTouchListener(this);
+        upgrade_dialog_rl.setOnTouchListener(this);
+        evolve_dialog_rl.setOnTouchListener(this);
+
+        home_bottom_btn_img.setOnTouchListener(this);
+        level_bottom_btn_img.setOnTouchListener(this);
+        rob_bottom_btn_img.setOnTouchListener(this);
+        shop_bottom_btn_img.setOnTouchListener(this);
+        friends_bottom_btn_img.setOnTouchListener(this);
+        setting_bottom_btn_img.setOnTouchListener(this);
+        left_top_today_mission_img.setOnTouchListener(this);
+        pop_menu_btn_rl.setOnTouchListener(this);
+        retract_btn_rl.setOnTouchListener(this);
+        backpage_super_btn_rl.setOnTouchListener(this);
+        honor_super_btn_rl.setOnTouchListener(this);
+        message_super_btn_rl.setOnTouchListener(this);
+        mission_super_btn_rl.setOnTouchListener(this);
+        battle_super_btn_rl.setOnTouchListener(this);
+        marge_super_btn_rl.setOnTouchListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        v.startAnimation(narrowAnim);
         switch (v.getId()) {
             case R.id.home_bottom_btn_img:
                 viewPager.setCurrentItem(0);
@@ -283,12 +290,14 @@ public class MainActivity extends BaseFragmentActivity {
                 dialog.show();
                 break;
             case R.id.retract_btn_rl:
-                super_menu_rl.startAnimation(retractAnim);
-                handler.postDelayed(runnable, SUPER_MENU_ANIMATION_TIME - 50);
+                //收起菜单栏
+                Tools.moveYTo(super_menu_rl, super_menu_rl.getHeight(), SUPER_MENU_ANIMATION_TIME);
+                handler.postDelayed(runnable, SUPER_MENU_ANIMATION_TIME - 100);
                 break;
             case R.id.pop_menu_btn_rl:
+                //拉出菜单栏
+                Tools.moveYTo(super_menu_rl, -super_menu_rl.getHeight(), SUPER_MENU_ANIMATION_TIME);
                 pop_menu_btn_rl.setVisibility(View.GONE);
-                super_menu_rl.clearAnimation();
                 break;
             case R.id.dialog_close_btn:
                 if (dialog.isShowing()) {
@@ -297,4 +306,29 @@ public class MainActivity extends BaseFragmentActivity {
                 break;
         }
     }
+
+    /**
+     * 触摸事件
+     *
+     * @param v
+     * @param event
+     * @return
+     */
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                //按下
+                Tools.btnPress(v);
+                break;
+            case MotionEvent.ACTION_UP:
+                //松开
+                Tools.btnRelease();
+                onClick(v);
+                break;
+        }
+        return true;
+    }
+
 }
